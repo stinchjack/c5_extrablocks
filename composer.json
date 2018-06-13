@@ -1,9 +1,9 @@
 {
   "name": "stinchjack/c5_extrablocks",
   "description": "Extra Blocks concrete5 V8",
-  "type": "project",
+  "type": "concrete5-package",
   "license": "LGPL-3.0-or-later",
-  "version": "0.1.9",
+  "version": "0.1.11",
   "authors": [
       {
           "name": "Jack Stinchcombe",
