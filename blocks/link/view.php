@@ -16,6 +16,6 @@ $view — the BlockView object
         }
        ?>
 
-       ">
+       ?>
       <?= htmlspecialchars($caption)?>
     </a>
