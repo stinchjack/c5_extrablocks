@@ -1,59 +1,56 @@
-<?php defined('C5_EXECUTE') or die("Access Denied.");?>
+<?php defined('C5_EXECUTE') or die("Access Denied.");
+
+
+
+
+
+?>
 
 
     <div class="form-group">
 
-      <?php
-      echo '<label  class="control-label" for="companyName" name = "companyName"> Company Name </label>';
-      echo $form->text('companyName', $companyName);
+          <label class="control-label" for="caption" name="linktext">Caption
+          </label>
+          <?php
+          echo $form->text('caption', $caption);
+          ?>
+          <p>
 
-      echo '<label  class="control-label" for="honorific" name = "honorific"> Honorific</label>';
-      echo $form->text('honorific', $honorific);
+            <?php
+            if (!isset($option) || !$option) {
+              $option = "external";
+            }
 
-      echo '<label  class="control-label" for="firstName" name = "firstName"> First Name </label>';
-      echo $form->text('firstName', $firstName);
+            echo $form->radio('option', 'internal', $option, array('id' => 'option1'));
+            ?>
+            <label class="control-label" for="option1" name="option">
+              Use CMS Page
+            </label>
+            <br/>
 
-      echo '<label  class="control-label" for="lastName" name = "lastName"> Last Name </label>';
-      echo $form->text('lastName', $lastName);
+            <?php
+            echo $form->radio('option', 'external', $option, array('id' => 'option2'));
+            ?>
 
-      echo '<label  class="control-label" for="title" name = "title"> Title /Role /Position</label>';
-      echo $form->text('title', $title);
+            <label class="control-label" for="option2" name="option">
+              Use external link
+            </label>
+          </p>
+          <label class="control-label" for="internalPage" name="internalPage">
+            CMS Page:
+          </label>
+          <?php
+          $formHelp = Loader::helper('form/page_selector');
+          echo $formHelp->selectPage('internalPage');
+          ?>
 
-      echo '<label  class="control-label" for="department" name = "department"> Department</label>';
-      echo $form->text('department', $department);
+          <label class="control-label" for="externalLink" name="externalLink">
+            External Link:
+          </label>
+          <?php echo $form->text('externalLink', $externalLink);
+           echo $form->checkbox('openNewTab', 1, $openNewTab); ?>
+          <label class="control-label" for="openNewTab" name="openNewTab">
+              Open in new tab
+          </label>
 
-      echo '<label  class="control-label" for="image" name = "image">Photo </label>';
-      echo $form->text('image', $image);
-
-      echo '<label  class="control-label" for="email" name = "email">Email </label>';
-      echo $form->text('email', $email);
-
-      echo '<label  class="control-label" for="secondaryEmail" name = "secondaryEmail">Secondary email</label>';
-      echo $form->text('secondaryEmail', $secondaryEmail);
-
-      echo '<label  class="control-label" for="phone" name = "phone">Phone</label>';
-      echo $form->text('phone', $phone);
-
-      echo '<label  class="control-label" for="fax" name = "fax"> Fax </label>';
-      echo $form->text('fax', $fax);
-
-      echo '<label  class="control-label" for="mobile" name = "mobil"> Mobile</label>';
-      echo $form->text('mobile', $mobile);
-
-      echo '<label  class="control-label" for="otherPhone" name = "otherPhone"> Other Phone </label>';
-      echo $form->text('otherPhone', $otherPhone);
-
-      echo '<label  class="control-label" for="facebook" name = "facebook"> Facebook </label>';
-      echo $form->text('facebook', $facebook);
-
-      echo '<label  class="control-label" for="skypeId" name = "skypeId"> SkypeID </label>';
-      echo $form->text('skypeId', $skypeId);
-
-      echo '<label  class="control-label" for="postalAddress" name = "postalAddress">Postal Address </label>';
-      echo $form->text('postalAddress', $postalAddress);
-
-      echo '<label  class="control-label" for="otherAddress" name = "otherAddress"> Other Address</label>';
-      echo $form->text('otherAddress', $otherAddress);
-
-      ?>
     </div>
