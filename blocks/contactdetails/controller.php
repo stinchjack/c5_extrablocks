@@ -16,6 +16,21 @@ class Controller extends BlockController
           return t('Contact details');
       }
 
+      public function schemaType() {
+        return "ContactPoint";
+      }
+
+      public function schemaProperties() {
+        return [
+          'name' => trim($this->honorific . ' ' . $this->firstName . ' ' . $this->$lastame),
+          'email' => $this->email,
+          'telephone' => $this->phone,
+          'faxNumber' => $this->fax,
+          // areaServed => ??
+        ]
+      }
+
+
       public function view() {
 
         $loopFields = ['title',
@@ -70,7 +85,7 @@ class Controller extends BlockController
         if(!$emptyFieldCount) {
           $error->add(t('At least one contact detail required'));
         }
-        
+
         foreach ($contactInfoFields as $field) {
           if (!$args[$field])  {
             $emptyFieldCount++;
