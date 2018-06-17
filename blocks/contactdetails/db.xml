@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!--
+  see
+  https://legacy-documentation.concrete5.org/tutorials/creating-and-working-with-db-xml-files
+ -->
+<schema version="0.3">
+    <table name="btContactDetails">
+        <field name="bID" type="I">
+            <key ></key>
+            <unsigned ></unsigned>
+            <default value="0"/>
+        </field>
+        <field name="honorific" type="C">
+        </field>
+        <field name="companyName" type="C">
+        </field>
+        <field name="firstName" type="C">
+        </field>
+        <field name="lastName" type="C">
+        </field>
+        <field name="title" type="C">
+        </field>
+        <field name="department" type="C">
+        </field>
+        <field name="image" type="C">
+        </field>
+        <field name="email" type="C">
+        </field>
+        <field name="secondaryEmail" type="C">
+        </field>
+        <field name="phone" type="C">
+        </field>
+        <field name="otherPhone" type="C">
+        </field>
+        <field name="fax" type="C">
+        </field>
+        <field name="mobile" type="C">
+        </field>
+        <field name="facebook" type="C">
+        </field>
+        <field name="skypeId" type="C">
+        </field>
+        <field name="postalAddress" type="C">
+        </field>
+        <field name="otherAddress" type="C">
+        </field>
+
+
+    </table>
+</schema>
