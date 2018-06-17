@@ -1,4 +1,4 @@
-<!--
+<?php /*
 $c — the page object
 $a — the area (or GlobalArea) object
 $controller — the controller object
@@ -6,7 +6,8 @@ $b — the block object
 $bt — the block type object
 $form — the form helper object
 $view — the BlockView object
--->
+
+*/?>
 
     <a href="<?= $linkhref ?>"
 
@@ -17,5 +18,5 @@ $view — the BlockView object
        ?>
 
        ?>
-      <?= htmlspecialchars($caption)?>
+      <?= $caption ?>
     </a>

@@ -9,7 +9,7 @@ class Controller extends \Package
 {
     protected $pkgHandle = 'extrablocks'; //<--must match package name
     protected $appVersionRequired = '8.3.2';
-    protected $pkgVersion = '0.2.1';
+    protected $pkgVersion = '0.3.0';
 
 
 
@@ -38,6 +38,11 @@ class Controller extends \Package
       $bt = BlockType::getByHandle('link');
       if (!is_object($bt)) {
         $bt = BlockType::installBlockType('link', $pkg);
+      }
+      
+      $bt = BlockType::getByHandle('contactdetails');
+      if (!is_object($bt)) {
+        $bt = BlockType::installBlockType('contactdetails', $pkg);
       }
     }
 
