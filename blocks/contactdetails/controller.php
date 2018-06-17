@@ -1,7 +1,7 @@
 <?php
-namespace Concrete\Package\Extrablocks\Block\Link;
-use use LdJson\BlockController;
-class Controller extends BlockController
+namespace Concrete\Package\Extrablocks\Block\Contactdetails;
+use LdJson\LDJsonBlockController;
+class Controller extends LDJsonBlockController;
 {
 
       protected $btTable = 'btContactDetails'; // this must be set for the data to be saved to DB
