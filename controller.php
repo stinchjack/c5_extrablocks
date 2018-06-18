@@ -9,7 +9,7 @@ class Controller extends \Package
 {
     protected $pkgHandle = 'extrablocks'; //<--must match package name
     protected $appVersionRequired = '8.3.2';
-    protected $pkgVersion = '0.3.5';
+    protected $pkgVersion = '0.3.10';
 
 
 

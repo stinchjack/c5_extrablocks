@@ -12,13 +12,13 @@ $view — the BlockView object
 <ul>
   <h4>
     <?php
-      echo $honorific . ' ' . $firstname . ' ' $lastname;
+      echo $honorific . ' ' . $firstname . ' ' . $lastname;
     ?>
   </h4>
   <?php
     foreach($loopFields as $field => $label) {
       if ($$field != '') {
-        echo '<li>'  $label . ':' . $$field . '</li>';
+        echo '<li>' . $label . ':' . $$field . '</li>';
       }
     }
   ?>

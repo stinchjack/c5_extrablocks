@@ -1,7 +1,8 @@
 <?php
 namespace Concrete\Package\Extrablocks\Block\Contactdetails;
-use LdJson\LDJsonBlockController;
-class Controller extends LDJsonBlockController;
+use Helper\LdJson\LDJsonBlockController;
+use Concrete\Core\Block\BlockController;
+class Controller extends LDJsonBlockController
 {
 
       protected $btTable = 'btContactDetails'; // this must be set for the data to be saved to DB
@@ -16,18 +17,25 @@ class Controller extends LDJsonBlockController;
           return t('Contact details');
       }
 
-      public function schemaType() {
+      protected function schemaType() : string {
         return "ContactPoint";
       }
 
-      public function schemaProperties() {
-        return [
-          'name' => trim($this->honorific . ' ' . $this->firstName . ' ' . $this->$lastame),
-          'email' => $this->email,
-          'telephone' => $this->phone,
-          'faxNumber' => $this->fax,
+      protected function schemaProperties($fieldData) : array {
+
+
+        $name = trim($fieldData['honorific'] . ' ' .
+          $fieldData['firstName'] . ' ' . $fieldData['$lastName']);
+
+        $data = array(
+          'name' => $name,
+          'email' => $fieldData['email'],
+          'telephone' => $fieldData['phone'],
+          'faxNumber' => $fieldData['fax'],
           // areaServed => ??
-        ]
+        );
+
+        return $data;
       }
 
 
@@ -40,20 +48,27 @@ class Controller extends LDJsonBlockController;
           'fax', 'mobile',
           'facebook',
           'skypeId', 'postalAddress',
-          'otherAddress']
+          'otherAddress'];
 
-        $this->set('loopfields', $loopFields);
+        $this->set('loopFields', $loopFields);
 
       }
       public function save($args)
       {
 
-          // clean input data
-          foreach ($args as $field=>$value) {
-            $args[$field] = trim(htmlspecialchars(strip_tags($value)));
-          }
+        $myFields = ['honorific', 'companyName', 'firstName',
+        'lastName', 'title', 'department', 'image',
+        'email', 'secondaryEmail', 'phone',
+        'otherPhone', 'fax', 'mobile', 'facebook',
+        'skypeId', 'postalAddress', 'otherAddress'];
 
-          parent::save($args);
+        // clean input data
+        foreach ($myFields as $field) {
+          $args[$fields] = trim(htmlspecialchars(strip_tags($args[$field])));
+        }
+
+          //die(implode (', ', array_values($args)));
+        parent::save($args);
       }
 
       public function validate ($args) {
@@ -70,7 +85,7 @@ class Controller extends LDJsonBlockController;
 
         $contactInfoFields = [
           'email' => 'Email',
-          'secondaryEmail' = > 'Secondary email',
+          'secondaryEmail' => 'Secondary email',
           'phone' => 'Phone',
           'otherPhone' => 'Other Phone',
           'fax' => 'Fax',
