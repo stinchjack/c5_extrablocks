@@ -9,16 +9,20 @@ $view — the BlockView object
 
 */?>
 
+<?php
+echo $LDJson;
+ ?>
+
 <ul>
   <h4>
     <?php
-      echo $honorific . ' ' . $firstname . ' ' . $lastname;
+      echo $honorific . ' ' . $firstName . ' ' . $lastName;
     ?>
   </h4>
   <?php
     foreach($loopFields as $field => $label) {
       if ($$field != '') {
-        echo '<li>' . $label . ':' . $$field . '</li>';
+        echo '<li>' . $label . ': ' . $$field . '</li>';
       }
     }
   ?>

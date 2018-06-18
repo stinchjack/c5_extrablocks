@@ -9,7 +9,7 @@ class Controller extends LDJsonBlockController
 
       public function getBlockTypeName()
       {
-          return t('contactdetails');
+          return t('contactdetail');
       }
 
       public function getBlockTypeDescription()
@@ -23,44 +23,53 @@ class Controller extends LDJsonBlockController
 
       protected function schemaProperties($fieldData) : array {
 
-
         $name = trim($fieldData['honorific'] . ' ' .
-          $fieldData['firstName'] . ' ' . $fieldData['$lastName']);
+          $fieldData['firstName'] . ' ' . $fieldData['lastName']);
 
-        $data = array(
-          'name' => $name,
-          'email' => $fieldData['email'],
-          'telephone' => $fieldData['phone'],
-          'faxNumber' => $fieldData['fax'],
-          // areaServed => ??
-        );
+        $data = [];
+
+        $data['name'] = $name;
+        if ($fieldData['email']) {
+          $data['email'] = $fieldData['email'];
+        }
+        if ($fieldData['phone']) {
+          $data['telephone'] = $fieldData['phone'];
+        }
+        if ($fieldData['fax']) {
+          $data['fax'] = $fieldData['fax'];
+        }
 
         return $data;
       }
 
 
+      private function contactInfoFields() {
+
+        return [   'email' => 'Email',
+                   'secondaryEmail' => 'Secondary email',
+                   'phone' => 'Phone',
+                   'title' => 'Title',
+                   'otherPhone' => 'Other Phone',
+                   'fax' => 'Fax',
+                   'mobile' => 'Mobile',
+                   'facebook' => 'Facebook',
+                   'skypeId' => 'Skype ID',
+                   'postalAddress' => 'Postal Address',
+                   'OtherAddress' => 'Address',
+                 ];
+       }
+
       public function view() {
 
-        $loopFields = ['title',
-          'department',
-          'email', 'secondaryEmail',
-          'phone', 'otherPhone',
-          'fax', 'mobile',
-          'facebook',
-          'skypeId', 'postalAddress',
-          'otherAddress'];
 
-        $this->set('loopFields', $loopFields);
+        $this->set('loopFields', $this->contactInfoFields());
 
       }
       public function save($args)
       {
 
-        $myFields = ['honorific', 'companyName', 'firstName',
-        'lastName', 'title', 'department', 'image',
-        'email', 'secondaryEmail', 'phone',
-        'otherPhone', 'fax', 'mobile', 'facebook',
-        'skypeId', 'postalAddress', 'otherAddress'];
+        $myFields = ['honorific', 'companyName', 'firstName', 'lastName'] +
+          $this->contactInfoFields();
 
         // clean input data
         foreach ($myFields as $field) {
@@ -83,19 +92,7 @@ class Controller extends LDJsonBlockController
           $error->add(t('At least one of Company Name or First Name required'));
         }
 
-        $contactInfoFields = [
-          'email' => 'Email',
-          'secondaryEmail' => 'Secondary email',
-          'phone' => 'Phone',
-          'otherPhone' => 'Other Phone',
-          'fax' => 'Fax',
-          'mobile' => 'Mobile',
-          'facebook' => 'Facebook',
-          'skypeId' => 'Skype ID',
-          'postalAddress' => 'Postal Address',
-          'OtherAddress' => 'Address',
-        ];
-
+        $contactInfoFields =  $this->contactInfoFields();
         $emptyFieldCount = 0;
         if(!$emptyFieldCount) {
           $error->add(t('At least one contact detail required'));

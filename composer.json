@@ -3,7 +3,7 @@
   "description": "Extra Blocks concrete5 V8",
   "type": "concrete5-package",
   "license": "LGPL-3.0-or-later",
-  "version": "0.3.10",
+  "version": "0.3.13",
   "authors": [
       {
           "name": "Jack Stinchcombe",
